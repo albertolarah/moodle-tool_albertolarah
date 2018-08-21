@@ -26,6 +26,8 @@ require_once(__DIR__ . '/../../../config.php');
 
 require_login();
 
+$courseid = optional_param('id', 0, PARAM_INT);
+
 $url = new moodle_url('/admin/tool/albertolarah/index.php');
 
 $PAGE->set_context(context_system::instance());
@@ -34,4 +36,6 @@ $PAGE->set_pagelayout('report');
 $PAGE->set_title(get_string('helloworld', 'tool_albertolarah'));
 $PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
 
-echo get_string('helloworld', 'tool_albertolarah');
+echo $OUTPUT->header();
+echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
+echo $OUTPUT->footer();
