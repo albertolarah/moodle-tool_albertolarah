@@ -1,5 +1,5 @@
 This file describe the changes in the plugin tool_albertolarah.
-This plugin is only for training porpouses.
+This plugin is only for training purposes.
 This plugin support Moodle 3.1 and onwards.
 
 === 1.0 ===
@@ -23,3 +23,7 @@ First release:
 === 1.3 ===
 
 * Extend course navigation.
+
+=== 1.4 ===
+
+* Show course summary. Without support of media.

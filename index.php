@@ -27,6 +27,7 @@ require_once(__DIR__ . '/../../../config.php');
 require_login();
 
 $courseid = required_param('id', PARAM_INT);
+$course = $DB->get_record_sql("SELECT summary FROM {course} WHERE id = ?", [$courseid]);
 
 $url = new moodle_url('/admin/tool/devcourse/index.php', ['id' => $courseid]);
 
@@ -38,4 +39,5 @@ $PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
 
 echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
+echo html_writer::div(format_string($course->summary)); // Not support images or media yet.
 echo $OUTPUT->footer();
