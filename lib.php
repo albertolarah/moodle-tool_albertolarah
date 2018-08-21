@@ -15,27 +15,29 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Main file
+ * Callbacks for plugin tool_albertolarah
  *
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . '/../../../config.php');
+defined('MOODLE_INTERNAL') || die();
 
-require_login();
-
-$courseid = required_param('id', PARAM_INT);
-
-$url = new moodle_url('/admin/tool/devcourse/index.php', ['id' => $courseid]);
-
-$PAGE->set_context(context_system::instance());
-$PAGE->set_url($url);
-$PAGE->set_pagelayout('report');
-$PAGE->set_title(get_string('helloworld', 'tool_albertolarah'));
-$PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
-
-echo $OUTPUT->header();
-echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
-echo $OUTPUT->footer();
+/**
+ * Extend the course settings navigation
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass $course The course to object for the tool
+ * @return void|null return null if we don't want to display the node.
+ */
+function tool_albertolarah_extend_navigation_course($navigation, $course, $context) {
+    $context;
+    $navigation->add(
+        get_string('pluginname', 'tool_albertolarah'),
+        new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $course->id]),
+        navigation_node::TYPE_SETTING,
+        get_string('pluginname', 'tool_albertolarah'),
+        'devcourse',
+        new pix_icon('icon', '', 'tool_albertolarah'));
+}

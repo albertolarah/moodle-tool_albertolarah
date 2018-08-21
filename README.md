@@ -10,7 +10,16 @@ First release:
 * Added pix icon (svg and png fallback).
 * Added support for travis.
 
-=== 1.0 ===
+=== 1.1 ===
 
 * Fix codechecker warnings.
 * Created index page.
+
+=== 1.2 ===
+
+* Output content using the generic renderer OUTPUT.
+* How to use html_writter.
+
+=== 1.3 ===
+
+* Extend course navigation.
