@@ -9,3 +9,8 @@ First release:
 * Added 'en' language for the plugin.
 * Added pix icon (svg and png fallback).
 * Added support for travis.
+
+=== 1.0 ===
+
+* Fix codechecker warnings.
+* Created index page.
