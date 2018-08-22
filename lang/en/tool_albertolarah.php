@@ -45,3 +45,5 @@ $string['alreadycompleted'] = 'Already completed?';
 $string['name'] = 'Name';
 $string['prioritary'] = 'Name';
 $string['newentry'] = 'New entry';
+
+$string['deletesuccess'] = 'The entry has been deleted';

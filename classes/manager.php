@@ -37,6 +37,14 @@ class  manager {
 
     const TABLE = 'tool_albertolarah';
 
+    /**
+     * Get an entry
+     *
+     * @param $id
+     *
+     * @return mixed
+     * @throws \dml_exception
+     */
     public static function get($id) {
         global $DB;
         return $DB->get_record(self::TABLE, ['id' => $id], '*', MUST_EXIST);
@@ -76,5 +84,19 @@ class  manager {
             'completed' => $data->completed,
             'timemodified' => time()
         ]);
+    }
+
+    /**
+     Delete an entry
+     *
+     * @param int $id
+     *
+     * @return mixed
+     * @throws \dml_exception
+     */
+    public static function delete(int $id) {
+        global $DB;
+        self::get($id);
+        return $DB->delete_records(self::TABLE, ['id' => $id]);
     }
 }

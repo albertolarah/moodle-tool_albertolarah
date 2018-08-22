@@ -40,10 +40,19 @@ $PAGE->set_pagelayout('report');
 $PAGE->set_title(get_string('helloworld', 'tool_albertolarah'));
 $PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
 
+// Only user with capability and a valid sesskey can delete a entry.
+if ($deleteid = optional_param('delete', null, PARAM_INT)) {
+    require_sesskey();
+    require_capability('tool/albertolarah:edit', $context);
+    \tool_albertolarah\manager::delete($deleteid);
+    redirect($url, get_string('deletesuccess', 'tool_albertolarah'));
+}
+
+
+// Output.
 echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
 echo html_writer::div(format_string($course->summary)); // Not support images or media yet.
-
 // Display table.
 $table = new \tool_albertolarah\table_sql('tool_albertolarah', $courseid);
 $table->out(10, true);
@@ -54,4 +63,5 @@ if (has_capability('tool/albertolarah:edit', $context)) {
     $linkhtml = html_writer::link($editurl, get_string('addentry', 'tool_albertolarah'), array('class' => 'btn btn-primary'));
     echo html_writer::div(html_writer::empty_tag('br') . $linkhtml);
 }
+
 echo $OUTPUT->footer();

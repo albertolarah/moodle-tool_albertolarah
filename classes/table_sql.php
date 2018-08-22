@@ -87,7 +87,7 @@ class table_sql extends \table_sql {
         $this->define_baseurl($PAGE->url);
         $this->add_separator();
         $this->context = \context_course::instance($courseid);
-        $this->set_sql('id, name, completed, priority, timecreated, timemodified',
+        $this->set_sql('id, courseid, name, completed, priority, timecreated, timemodified',
             '{tool_albertolarah}', 'courseid = ?', [$courseid]);
     }
 
@@ -157,10 +157,21 @@ class table_sql extends \table_sql {
      */
     protected function col_edit($row) {
         global $OUTPUT;
+
         if (isset($row)) {
-            $url = new \moodle_url('/admin/tool/albertolarah/edit.php', ['id' => $row->id]);
+            $editurl = new \moodle_url('/admin/tool/albertolarah/edit.php', ['id' => $row->id]);
             $actionicon = $OUTPUT->pix_icon('t/editinline', '');
-            return \html_writer::link($url, $actionicon);
+            $editicon = \html_writer::link($editurl, $actionicon);
+
+            $editurl = new \moodle_url('/admin/tool/albertolarah/index.php', [
+                'id' => $row->courseid,
+                'delete' => $row->id,
+                'sesskey' => sesskey()
+            ]);
+            $actionicon = $OUTPUT->pix_icon('t/delete', '');
+            $deteleicon = \html_writer::link($editurl, $actionicon);
+
+            return $editicon . $deteleicon;
         }
 
         return '';
