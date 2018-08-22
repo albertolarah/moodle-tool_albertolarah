@@ -32,12 +32,13 @@ defined('MOODLE_INTERNAL') || die();
  * @return void|null return null if we don't want to display the node.
  */
 function tool_albertolarah_extend_navigation_course($navigation, $course, $context) {
-    $context;
-    $navigation->add(
-        get_string('pluginname', 'tool_albertolarah'),
-        new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $course->id]),
-        navigation_node::TYPE_SETTING,
-        get_string('pluginname', 'tool_albertolarah'),
-        'devcourse',
-        new pix_icon('icon', '', 'tool_albertolarah'));
+    if (has_capability('tool/albertolarah:view', $context)) {
+        $navigation->add(
+            get_string('pluginname', 'tool_albertolarah'),
+            new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $course->id]),
+            navigation_node::TYPE_SETTING,
+            get_string('pluginname', 'tool_albertolarah'),
+            'devcourse',
+            new pix_icon('icon', '', 'tool_albertolarah'));
+    }
 }

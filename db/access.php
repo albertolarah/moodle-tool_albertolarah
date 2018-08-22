@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for tool_albertolarah.
+ * Capability definitions for this module.
  *
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
@@ -24,16 +24,25 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'My first Moodle plugin';
-$string['helloworld'] = 'Hello world!. You are in course: {$a}';
-
-// Table header.
-$string['completed'] = 'Completed';
-$string['priority'] = 'Priority';
-$string['timecreated'] = 'Created';
-$string['timemodified'] = 'Modified';
-$string['name'] = 'Name';
-
-// Capabilities definition.
-$string['albertolarah:edit'] = 'Edit albertolarah data';
-$string['albertolarah:view'] = 'View albertolarah data';
+$capabilities = [
+    'tool/albertolarah:view' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'student' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        )
+    ],
+    'tool/albertolarah:edit' => [
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
+            'teacher' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW,
+        ]
+    ],
+];

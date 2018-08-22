@@ -33,3 +33,7 @@ First release:
 * Add datatable.
 * How to use table sql class.
 * Show table data.
+
+=== 1.6 ===
+
+* Add capabilities.

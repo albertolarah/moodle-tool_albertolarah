@@ -24,9 +24,12 @@
 
 require_once(__DIR__ . '/../../../config.php');
 
-require_login();
-
 $courseid = required_param('id', PARAM_INT);
+
+require_login($courseid);
+$context = context_course::instance($courseid);
+require_capability('tool/albertolarah:view', $context);
+
 $course = $DB->get_record_sql("SELECT summary FROM {course} WHERE id = ?", [$courseid]);
 
 $url = new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $courseid]);
