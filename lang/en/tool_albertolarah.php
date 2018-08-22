@@ -26,3 +26,10 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'My first Moodle plugin';
 $string['helloworld'] = 'Hello world!. You are in course: {$a}';
+
+// Langs for table header.
+$string['completed'] = 'Completed';
+$string['priority'] = 'Priority';
+$string['timecreated'] = 'Created';
+$string['timemodified'] = 'Modified';
+$string['name'] = 'Name';

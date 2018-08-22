@@ -29,7 +29,7 @@ require_login();
 $courseid = required_param('id', PARAM_INT);
 $course = $DB->get_record_sql("SELECT summary FROM {course} WHERE id = ?", [$courseid]);
 
-$url = new moodle_url('/admin/tool/devcourse/index.php', ['id' => $courseid]);
+$url = new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $courseid]);
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
@@ -40,4 +40,8 @@ $PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
 echo $OUTPUT->header();
 echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
 echo html_writer::div(format_string($course->summary)); // Not support images or media yet.
+
+// Display table.
+$table = new tool_albertolarah_table_sql('tool_albertolarah', $courseid);
+$table->out(10, true);
 echo $OUTPUT->footer();

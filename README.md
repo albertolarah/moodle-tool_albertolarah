@@ -27,3 +27,9 @@ First release:
 === 1.4 ===
 
 * Show course summary. Without support of media.
+
+=== 1.5 ===
+
+* Add datatable.
+* How to use table sql class.
+* Show table data.
