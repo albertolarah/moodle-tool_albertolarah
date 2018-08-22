@@ -38,6 +38,18 @@ First release:
 
 * Add capabilities.
 
-=== 1.6 ===
+=== 1.7 ===
 
 * Added create and edit entries functionality.
+
+=== 1.8 ===
+
+* Delete entries functionality.
+
+=== 1.9 ===
+
+* Behat tests
+
+=== 2.0 ===
+
+* PHPUNIT tests

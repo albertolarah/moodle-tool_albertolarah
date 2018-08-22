@@ -53,17 +53,19 @@ class  manager {
     /**
      * Create an entry
      *
-     * @param $data
+     * @param stdClass $data
+     * @return int id of the new entry
      *
      * @throws \dml_exception
      */
-    public static function create($data) {
+    public static function create($data) : int {
         global $DB;
-        $DB->insert_record(self::TABLE, [
+
+        return $DB->insert_record(self::TABLE, (object)[
             'courseid' => $data->courseid,
             'name' => $data->name,
             'completed' => $data->completed,
-            'priority' => 0,
+            'priority' => isset($data->priority) ? $data->priority : 1,
             'timecreated' => time(),
             'timemodified' => time()
         ]);
@@ -78,12 +80,7 @@ class  manager {
      */
     public static function update(\stdClass $data) {
         global $DB;
-        $DB->update_record(self::TABLE, [
-            'id' => $data->id,
-            'name' => $data->name,
-            'completed' => $data->completed,
-            'timemodified' => time()
-        ]);
+        $DB->update_record(self::TABLE, $data);
     }
 
     /**
