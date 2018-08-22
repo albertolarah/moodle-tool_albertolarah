@@ -37,3 +37,7 @@ First release:
 === 1.6 ===
 
 * Add capabilities.
+
+=== 1.6 ===
+
+* Added create and edit entries functionality.

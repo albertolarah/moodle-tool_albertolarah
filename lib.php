@@ -38,7 +38,7 @@ function tool_albertolarah_extend_navigation_course($navigation, $course, $conte
             new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $course->id]),
             navigation_node::TYPE_SETTING,
             get_string('pluginname', 'tool_albertolarah'),
-            'devcourse',
+            'albertolarah',
             new pix_icon('icon', '', 'tool_albertolarah'));
     }
 }

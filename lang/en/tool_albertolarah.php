@@ -37,3 +37,11 @@ $string['name'] = 'Name';
 // Capabilities definition.
 $string['albertolarah:edit'] = 'Edit albertolarah data';
 $string['albertolarah:view'] = 'View albertolarah data';
+
+$string['addentry'] = 'Add new entry';
+$string['editentry'] = 'Edit entry';
+$string['errornameexists'] = 'Name must be unique in this course';
+$string['alreadycompleted'] = 'Already completed?';
+$string['name'] = 'Name';
+$string['prioritary'] = 'Name';
+$string['newentry'] = 'New entry';

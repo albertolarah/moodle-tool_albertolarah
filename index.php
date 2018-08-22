@@ -45,6 +45,13 @@ echo html_writer::div(get_string('helloworld', 'tool_albertolarah', $courseid));
 echo html_writer::div(format_string($course->summary)); // Not support images or media yet.
 
 // Display table.
-$table = new tool_albertolarah_table_sql('tool_albertolarah', $courseid);
+$table = new \tool_albertolarah\table_sql('tool_albertolarah', $courseid);
 $table->out(10, true);
+
+// User with edit capability can add new entries.
+if (has_capability('tool/albertolarah:edit', $context)) {
+    $editurl = new moodle_url('/admin/tool/albertolarah/edit.php', ['courseid' => $courseid]);
+    $linkhtml = html_writer::link($editurl, get_string('addentry', 'tool_albertolarah'), array('class' => 'btn btn-primary'));
+    echo html_writer::div(html_writer::empty_tag('br') . $linkhtml);
+}
 echo $OUTPUT->footer();
