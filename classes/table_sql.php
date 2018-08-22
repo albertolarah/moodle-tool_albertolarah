@@ -61,6 +61,8 @@ class table_sql extends \table_sql {
 
         parent::__construct($uniqueid);
 
+        $this->set_attribute('id', 'tool_albertolarah_table');
+
         $columns = array('name', 'completed', 'priority', 'timecreated', 'timemodified');
         $headers = array(
             get_string('name', 'tool_albertolarah'),
@@ -157,11 +159,10 @@ class table_sql extends \table_sql {
      */
     protected function col_edit($row) {
         global $OUTPUT;
-
         if (isset($row)) {
             $editurl = new \moodle_url('/admin/tool/albertolarah/edit.php', ['id' => $row->id]);
             $actionicon = $OUTPUT->pix_icon('t/editinline', '');
-            $editicon = \html_writer::link($editurl, $actionicon);
+            $editicon = \html_writer::link($editurl, $actionicon, array('class' => 'edit-entry'));
 
             $editurl = new \moodle_url('/admin/tool/albertolarah/index.php', [
                 'id' => $row->courseid,
@@ -169,7 +170,7 @@ class table_sql extends \table_sql {
                 'sesskey' => sesskey()
             ]);
             $actionicon = $OUTPUT->pix_icon('t/delete', '');
-            $deteleicon = \html_writer::link($editurl, $actionicon);
+            $deteleicon = \html_writer::link($editurl, $actionicon, array('class' => 'delete-entry'));
 
             return $editicon . $deteleicon;
         }

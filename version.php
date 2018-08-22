@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018082108; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2018082109; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2016052300; // Requires this Moodle version. (from Moodle 3.1).
-$plugin->release   = '1.8';
+$plugin->release   = '1.9';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->component = 'tool_albertolarah';
