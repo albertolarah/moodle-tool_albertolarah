@@ -13,19 +13,31 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Version details
+ * Class tool_albertolarah_renderer
  *
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
-
-$plugin->version   = 2018082322; // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2016052300; // Requires this Moodle version. (from Moodle 3.1).
-$plugin->release   = '2.2';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'tool_albertolarah';
+use tool_albertolarah\output\entries_list;
+/**
+ * Renderer for tool_albertolarah
+ *
+ * @package   tool_albertolarah
+ * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class tool_albertolarah_renderer extends plugin_renderer_base {
+    /**
+     * Renders an entries list.
+     *
+     * @param entries_list $list
+     * @return string HTML
+     */
+    protected function render_entries_list(entries_list $list) {
+        $context = $list->export_for_template($this);
+        return $this->render_from_template('tool_albertolarah/main_page', $context);
+    }
+}
