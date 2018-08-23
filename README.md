@@ -53,3 +53,11 @@ First release:
 === 2.0 ===
 
 * PHPUNIT tests
+
+=== 2.1 ===
+
+* Working with files
+
+=== 2.2 ===
+
+* Templates
