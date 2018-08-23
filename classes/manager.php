@@ -80,6 +80,13 @@ class  manager {
             $DB->update_record('tool_albertolarah', $updatedata);
         }
 
+        // Trigger event.
+        $event = \tool_albertolarah\event\entry_created::create([
+            'context' => \context_course::instance($data->courseid),
+            'objectid' => $entryid
+        ]);
+        $event->trigger();
+
         return $entryid;
     }
 
@@ -106,6 +113,15 @@ class  manager {
                            'descriptionformat' => $data->descriptionformat];
             $DB->update_record('tool_albertolarah', $updatedata);
         }
+
+        // Trigger event.
+        $entry = self::get($data->id);
+        $event = \tool_albertolarah\event\entry_updated::create([
+            'context' => \context_course::instance($entry->courseid),
+            'objectid' => $entry->id
+        ]);
+        $event->add_record_snapshot('tool_albertolarah', $entry);
+        $event->trigger();
     }
 
     /**
@@ -118,7 +134,16 @@ class  manager {
      */
     public static function delete(int $id) {
         global $DB;
-        self::get($id);
+        $entry = self::get($id);
+
+        // Trigger event.
+        $event = \tool_albertolarah\event\entry_deleted::create([
+            'context' => \context_course::instance($entry->courseid),
+            'objectid' => $entry->id
+        ]);
+        $event->add_record_snapshot('tool_albertolarah', $entry);
+        $event->trigger();
+
         return $DB->delete_records(self::TABLE, ['id' => $id]);
     }
 }

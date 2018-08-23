@@ -15,17 +15,29 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
- *
+ * Observer
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
+require_once($CFG->dirroot . "/group/lib.php");
+/**
+ * Observers
+ * @package   tool_albertolarah
+ * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class tool_albertolarah_observer {
 
-$plugin->version   = 2018082324; // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2016052300; // Requires this Moodle version. (from Moodle 3.1).
-$plugin->release   = '2.4';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'tool_albertolarah';
+    /**
+     * Observer for course_deleted event - deletes all associated entries
+     *
+     * @param \core\event\course_deleted $event
+     */
+    public static function course_deleted(\core\event\course_deleted $event) {
+        global $DB;
+        $DB->delete_records('tool_albertolarah', ['courseid' => $event->objectid]);
+    }
+}

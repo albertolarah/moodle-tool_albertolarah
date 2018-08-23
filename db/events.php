@@ -15,17 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Add event handlers for the tool_albertolarah
  *
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018082324; // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2016052300; // Requires this Moodle version. (from Moodle 3.1).
-$plugin->release   = '2.4';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'tool_albertolarah';
+$observers = array (
+    array(
+        'eventname' => '\core\event\course_deleted',
+        'callback' => 'tool_albertolarah_observer::course_deleted',
+    ),
+);

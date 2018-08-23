@@ -47,3 +47,8 @@ $string['editordescription'] = 'Extra info description';
 $string['description'] = 'Description';
 
 $string['confirmdeletemsg'] = 'Are you sure you want to delete this entry (this action is not reversible)?';
+
+// Events.
+$string['evententrycreated'] = 'Entry created';
+$string['evententrydeleted'] = 'Entry deleted';
+$string['evententryupdated'] = 'Entry updated';
