@@ -60,15 +60,27 @@ class  manager {
      */
     public static function create($data) : int {
         global $DB;
-
-        return $DB->insert_record(self::TABLE, (object)[
+        $entryid = $DB->insert_record(self::TABLE, (object)[
             'courseid' => $data->courseid,
             'name' => $data->name,
             'completed' => $data->completed,
             'priority' => isset($data->priority) ? $data->priority : 1,
+            'description' => isset($data->description_editor['text']) ? $data->description_editor['text'] : '',
+            'description_format' => isset($data->description_editor['format']) ? $data->description_editor['format'] : 1,
             'timecreated' => time(),
             'timemodified' => time()
         ]);
+
+        if (isset($data->description_editor)) {
+            $context = \context_course::instance($data->courseid);
+            $data = file_postupdate_standard_editor($data, 'description',
+                form::build_editor_options($context), $context, 'tool_albertolarah', 'entry', $entryid);
+            $updatedata = ['id' => $entryid, 'description' => $data->description,
+                           'descriptionformat' => $data->descriptionformat];
+            $DB->update_record('tool_albertolarah', $updatedata);
+        }
+
+        return $entryid;
     }
 
     /**
@@ -80,7 +92,20 @@ class  manager {
      */
     public static function update(\stdClass $data) {
         global $DB;
+        $data->timemodified = time();
+        $data->description = isset($data->description_editor['text']) ? $data->description_editor['text'] : '';
+        $data->description_format = isset($data->description_editor['format']) ? $data->description_editor['format'] : 1;
+
         $DB->update_record(self::TABLE, $data);
+
+        if (isset($data->description_editor)) {
+            $context = \context_course::instance($data->courseid);
+            $data = file_postupdate_standard_editor($data, 'description',
+                form::build_editor_options($context), $context, 'tool_albertolarah', 'entry', $data->id);
+            $updatedata = ['id' => $data->id, 'description' => $data->description,
+                           'descriptionformat' => $data->descriptionformat];
+            $DB->update_record('tool_albertolarah', $updatedata);
+        }
     }
 
     /**

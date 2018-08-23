@@ -51,8 +51,14 @@ require_login($courseid);
 
 require_capability('tool/albertolarah:edit', $context);
 
+$editoroptions = \tool_albertolarah\form::build_editor_options($context);
 
-$form = new \tool_albertolarah\form();
+$form = new \tool_albertolarah\form(null, array('editoroptions' => $editoroptions));
+if (!empty($entry->id)) {
+    file_prepare_standard_editor($entry, 'description',
+        $editoroptions,
+        $context, 'tool_albertolarah', 'entry', $entry->id);
+}
 $form->set_data($entry);
 
 $returnurl = new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $courseid]);
