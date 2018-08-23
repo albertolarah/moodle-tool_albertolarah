@@ -70,7 +70,7 @@ class entry_deleted extends base {
      * @return \moodle_url
      */
     public function get_url() {
-        return new \moodle_url('/admin/tool/devcourse/index.php', ['id' => $this->courseid]);
+        return new \moodle_url('/admin/tool/albertolarah/index.php', ['id' => $this->courseid]);
     }
 
     /**

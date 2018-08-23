@@ -171,7 +171,7 @@ class table_sql extends \table_sql {
                 'sesskey' => sesskey()
             ]);
             $actionicon = $OUTPUT->pix_icon('t/delete', '');
-            $deteleicon = \html_writer::link($editurl, $actionicon, array('class' => 'delete-entry'));
+            $deteleicon = \html_writer::link($editurl, $actionicon, array('class' => 'delete-entry', 'data-id' => $row->id));
 
             return $editicon . $deteleicon;
         }

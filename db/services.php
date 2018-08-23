@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Web services for tool_albertolarah
  *
  * @package   tool_albertolarah
  * @copyright 2018, Alberto Lara Hernández <albertolara@moodle.com>
@@ -24,8 +24,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018082325; // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2016052300; // Requires this Moodle version. (from Moodle 3.1).
-$plugin->release   = '2.5';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'tool_albertolarah';
+// We defined the web service functions to install.
+$functions = array(
+    'tool_albertolarah_delete_entry' => array(
+        'classname'    => 'tool_albertolarah_external',
+        'methodname'   => 'delete_entry',
+        'description'  => 'Deletes an entry',
+        'type'         => 'write',
+        'capabilities' => 'tool/albertolarah:edit',
+        'ajax'         => true,
+    ),
+    'tool_albertolarah_entries_list' => array(
+        'classname'    => 'tool_albertolarah_external',
+        'methodname'   => 'entries_list',
+        'description'  => 'Returns list of entries',
+        'type'         => 'read',
+        'capabilities' => 'tool/albertolarah:view',
+        'ajax'         => true,
+    ),
+);
