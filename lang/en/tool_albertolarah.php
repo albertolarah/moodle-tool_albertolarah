@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'My first Moodle plugin';
-$string['helloworld'] = 'Hello world!. You are in course: {$a}';
+$string['pluginname'] = 'Course entities management';
+$string['wellcomemsg'] = 'You are management the entries for the course: {$a}';
 // Table header.
 $string['completed'] = 'Completed';
 $string['priority'] = 'Priority';
@@ -33,8 +33,8 @@ $string['timecreated'] = 'Created';
 $string['timemodified'] = 'Modified';
 $string['name'] = 'Name';
 // Capabilities definition.
-$string['albertolarah:edit'] = 'Edit albertolarah data';
-$string['albertolarah:view'] = 'View albertolarah data';
+$string['albertolarah:edit'] = 'Edit the entries data';
+$string['albertolarah:view'] = 'View the entries data';
 $string['addentry'] = 'Add new entry';
 $string['editentry'] = 'Edit entry';
 $string['errornameexists'] = 'Name must be unique in this course';
@@ -42,6 +42,8 @@ $string['alreadycompleted'] = 'Already completed?';
 $string['name'] = 'Name';
 $string['newentry'] = 'New entry';
 $string['deletesuccess'] = 'The entry has been deleted';
-// Form fields
+// Form fields.
 $string['editordescription'] = 'Extra info description';
 $string['description'] = 'Description';
+
+$string['confirmdeletemsg'] = 'Are you sure you want to delete this entry (this action is not reversible)?';

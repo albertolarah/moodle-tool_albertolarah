@@ -36,8 +36,8 @@
         "addlink": "#"
     }
 }}
-<div>
-    <p>{{#str}} helloworld , tool_albertolarah , {{coursename}} {{/str}}</p>
+<div class="tool_albertolarah_main_page">
+    <p>{{#str}} wellcomemsg , tool_albertolarah , {{coursename}} {{/str}}</p>
     <p>{{{coursedescription}}}</p>
     {{#canaddentry}}
         <div><a role="button" href="{{addlink}}" class="btn btn-primary">{{#str}} newentry , tool_albertolarah {{/str}}</a></div>
@@ -47,3 +47,8 @@
         <div><a role="button" href="{{addlink}}" class="btn btn-primary">{{#str}} newentry , tool_albertolarah {{/str}}</a></div>
     {{/canaddentry}}
 </div>
+{{#js}}
+    require(['tool_albertolarah/controller-lazy'], function(Controller) {
+        new Controller('{{tableid}}');
+    });
+{{/js}}

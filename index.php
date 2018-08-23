@@ -37,7 +37,7 @@ $url = new moodle_url('/admin/tool/albertolarah/index.php', ['id' => $courseid])
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
-$PAGE->set_title(get_string('helloworld', 'tool_albertolarah'), $courseid);
+$PAGE->set_title(get_string('pluginname', 'tool_albertolarah'));
 $PAGE->set_heading(get_string('pluginname', 'tool_albertolarah'));
 
 // Only user with capability and a valid sesskey can delete a entry.

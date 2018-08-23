@@ -61,7 +61,7 @@ class table_sql extends \table_sql {
 
         parent::__construct($uniqueid);
 
-        $this->set_attribute('id', 'tool_albertolarah_table');
+        $this->set_attribute('id', $uniqueid);
 
         $columns = array('name', 'completed', 'priority', 'description', 'timecreated', 'timemodified');
         $headers = array(
@@ -200,6 +200,6 @@ class table_sql extends \table_sql {
     public function build_table() {
         parent::build_table();
         $this->add_separator();
-        $this->add_data(['a', 'a', '-', '-', '-', '']);
+        $this->add_data(['-', '-', '-', '-', '-', '-','']);
     }
 }

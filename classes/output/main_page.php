@@ -56,7 +56,8 @@ class main_page implements \templatable, \renderable {
 
         // Display table.
         ob_start();
-        $table = new table_sql('tool_albertolarah', $this->courseid);
+        $uniqueid = 'tool_albertolarah_table';
+        $table = new table_sql($uniqueid, $this->courseid);
         $table->out(20, false);
         $tablecontent = ob_get_clean();
 
@@ -68,7 +69,8 @@ class main_page implements \templatable, \renderable {
             'coursedescription' => format_string($course->summary, true, ['context' => $context]),
             'tablerender' => $tablecontent,
             'canaddentry' => has_capability('tool/albertolarah:edit', $context),
-            'addlink' => $url->out(false)
+            'addlink' => $url->out(false),
+            'tableid' => '#'.$uniqueid
         ];
     }
 }
