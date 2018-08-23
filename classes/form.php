@@ -56,13 +56,35 @@ class form extends \moodleform {
         $mform->addElement('text', 'name',
             get_string('name', 'tool_albertolarah'));
         $mform->setType('name', PARAM_NOTAGS);
-
+        $mform->addRule('name', '', 'required', null);
         $mform->addElement('advcheckbox', 'completed',
             get_string('alreadycompleted', 'tool_albertolarah'));
+
+        $editoroptions = !(empty($this->_customdata['editoroptions'])) ? $this->_customdata['editoroptions'] : null;
+
+        $mform->addElement('editor', 'description_editor',
+            get_string('editordescription', 'tool_albertolarah'),
+            null, $editoroptions);
 
         $this->add_action_buttons();
     }
 
+    /**
+     * Build the editor options using the given context.
+     *
+     * @param \context $context A Moodle context
+     * @return array
+     */
+    public static function build_editor_options(\context $context) {
+        global $CFG;
+        return [
+            'context' => $context,
+            'maxfiles' => EDITOR_UNLIMITED_FILES,
+            'maxbytes' => $CFG->maxbytes,
+            'noclean' => true,
+            'autosave' => true
+        ];
+    }
     /**
      * Form validation
      *

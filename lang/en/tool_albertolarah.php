@@ -26,23 +26,22 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'My first Moodle plugin';
 $string['helloworld'] = 'Hello world!. You are in course: {$a}';
-
 // Table header.
 $string['completed'] = 'Completed';
 $string['priority'] = 'Priority';
 $string['timecreated'] = 'Created';
 $string['timemodified'] = 'Modified';
 $string['name'] = 'Name';
-
 // Capabilities definition.
 $string['albertolarah:edit'] = 'Edit albertolarah data';
 $string['albertolarah:view'] = 'View albertolarah data';
-
 $string['addentry'] = 'Add new entry';
 $string['editentry'] = 'Edit entry';
 $string['errornameexists'] = 'Name must be unique in this course';
 $string['alreadycompleted'] = 'Already completed?';
 $string['name'] = 'Name';
 $string['newentry'] = 'New entry';
-
 $string['deletesuccess'] = 'The entry has been deleted';
+// Form fields
+$string['editordescription'] = 'Extra info description';
+$string['description'] = 'Description';

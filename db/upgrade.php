@@ -83,5 +83,22 @@ function xmldb_tool_albertolarah_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2018082103, 'tool', 'albertolarah');
     }
 
+    if ($oldversion < 2018082321) {
+        // Define field description to be added to tool_albertolarah.
+        $table = new xmldb_table('tool_albertolarah');
+        $field = new xmldb_field('description', XMLDB_TYPE_TEXT, null, null, null, null, null, 'priority');
+        // Conditionally launch add field description.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        // Define field descriptionformat to be added to tool_albertolarah.
+        $field = new xmldb_field('descriptionformat', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0', 'description');
+        // Conditionally launch add field descriptionformat.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_plugin_savepoint(true, 2018082321, 'tool', 'albertolarah');
+    }
     return true;
 }

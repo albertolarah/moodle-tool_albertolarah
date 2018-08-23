@@ -63,11 +63,12 @@ class table_sql extends \table_sql {
 
         $this->set_attribute('id', 'tool_albertolarah_table');
 
-        $columns = array('name', 'completed', 'priority', 'timecreated', 'timemodified');
+        $columns = array('name', 'completed', 'priority', 'description', 'timecreated', 'timemodified');
         $headers = array(
             get_string('name', 'tool_albertolarah'),
             get_string('completed', 'tool_albertolarah'),
             get_string('priority', 'tool_albertolarah'),
+            get_string('description', 'tool_albertolarah'),
             get_string('timecreated', 'tool_albertolarah'),
             get_string('timemodified', 'tool_albertolarah'),
         );
@@ -89,7 +90,7 @@ class table_sql extends \table_sql {
         $this->define_baseurl($PAGE->url);
         $this->add_separator();
         $this->context = \context_course::instance($courseid);
-        $this->set_sql('id, courseid, name, completed, priority, timecreated, timemodified',
+        $this->set_sql('id, courseid, name, completed, priority, description, descriptionformat, timecreated, timemodified',
             '{tool_albertolarah}', 'courseid = ?', [$courseid]);
     }
 
@@ -176,6 +177,20 @@ class table_sql extends \table_sql {
         }
 
         return '';
+    }
+
+    /**
+     * Displays column description
+     *
+     * @param stdClass $row
+     * @return string
+     */
+    protected function col_description($row) {
+        $context = \context_course::instance($row->courseid);
+        $options = form::build_editor_options($context);
+        $description = file_rewrite_pluginfile_urls($row->description, 'pluginfile.php',
+            $options['context']->id, 'tool_albertolarah', 'entry', $row->id, $options);
+        return format_text($description, $row->descriptionformat, $options);
     }
 
     /**
